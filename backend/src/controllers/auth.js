@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { generateToken } from "../lib/utils.js";
 import bcrypt from "bcryptjs";
+import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
@@ -53,28 +54,48 @@ export const signup = async (req, res) => {
 export const signin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    if(!email || !password) return res.status(400).json({message:"All fields are required!"})
-    const user = await User.findOne({email})
-    if(!user) return res.status(400).json({message:"Invalid Credentials!"});
+    if (!email || !password)
+      return res.status(400).json({ message: "All fields are required!" });
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Invalid Credentials!" });
 
-    const correctPassword = await bcrypt.compare(password,user.password);
-    if(!correctPassword) return res.status(400).json({message:"Invalid credentials!"})
+    const correctPassword = await bcrypt.compare(password, user.password);
+    if (!correctPassword)
+      return res.status(400).json({ message: "Invalid credentials!" });
 
-    generateToken(user._id,res);
+    generateToken(user._id, res);
     res.status(200).json({
-      _id:user._id,
-      username:user.username,
-      email:user.email,
-      userprofilepic:user.userprofilepic
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      userprofilepic: user.userprofilepic,
     });
-
   } catch (error) {
     console.error("Error in signin controller", error);
-    res.status(500).json({message:"Internal server error"});
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
 export const signout = (_, res) => {
-  res.cookie("jwt","",{maxAge:0});
-  res.status(200).json({message:"Successfully Logged Out"});
+  res.cookie("jwt", "", { maxAge: 0 });
+  res.status(200).json({ message: "Successfully Logged Out" });
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { userprofilepic } = req.body;
+    if (!userprofilepic)
+      return res.status(400).json({ message: "Profile pic is required" });
+    const userId = req.user._id;
+    const uploadResponse = await cloudinary.uploader.upload(userprofilepic);
+    const updatedProfile = await User.findByIdAndUpdate(
+      userId,
+      { userprofilepic: uploadResponse.secure_url },
+      { new: true }
+    );
+    res.status(200).json(updatedProfile);
+  } catch (error) {
+    console.error("Fail to update profile pic: ", error);
+    res.status(500).json({message:"Internal server error"});
+  }
 };
