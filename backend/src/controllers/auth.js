@@ -16,8 +16,10 @@ export const signup = async (req, res) => {
         .status(400)
         .json({ message: "Password should be atleast 6 characters long!" });
     }
+    const duplicateEmail = await User.findOne({email});
+    if (duplicateEmail) return res.status(400).json({message:"Email already exists"});
 
-    const regex = /^[^s@]+@[^s@]+.[^s@]+$/;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regex.test(email)) {
       return res
         .status(400)
