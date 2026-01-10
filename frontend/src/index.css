@@ -8,7 +8,7 @@
 }
 
 .input {
-  @apply w-full rounded-lg py-2 pl-10 pr-4 text-chat-dark placeholder-chat-accent focus:ring-2 focus:ring-chat-accent focus:border-transparent;
+  @apply w-full rounded-lg py-2 pl-10 pr-4 bg-chat-light placeholder-chat-highlight focus:ring-2 focus:ring-chat-accent focus:border-transparent;
 }
 
 .auth-btn {
@@ -16,5 +16,20 @@
  focus:ring-2;
 }
 .auth-link {
-  @apply px-4 py-2 inline-block rounded-lg text-chat-accent transition-colors;
+  @apply px-4 py-2 inline-block rounded-lg text-chat-accent;
+}
+.auth-login-input-icon {
+  @apply absolute left-3 top-1/2 -translate-y-1/2 text-chat-secondary size-5;
+}
+
+.input-login {
+  @apply w-full rounded-lg py-3 pl-10 pr-4 bg-chat-light placeholder-chat-highlight focus:ring-2 focus:ring-chat-highlight focus:outline-none;
+}
+
+.auth-login-btn {
+  @apply w-full text-chat-light bg-chat-secondary rounded-lg py-3 font-medium
+ focus:ring-2;
+}
+.auth-login-link {
+  @apply px-4 py-2 inline-block rounded-lg text-chat-dark;
 }
