@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function ChatIllustration() {
   return (
-    <div className="h-full w-full flex items-center justify-center bg-chat-light relative">
+    <div className="h-full w-full flex items-center justify-center bg-chat-light relative rounded-l-xl">
       {/* Abstract Background Elements */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}

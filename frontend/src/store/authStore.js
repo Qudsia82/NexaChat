@@ -6,6 +6,8 @@ export const useAuthStore = create((set) => ({
   authUser: null,
   isLoading: true,
   isSigningUp: false,
+  isSigningIn: false,
+  isSigningOut: false,
 
   checkAuth: async () => {
     try {
@@ -48,7 +50,70 @@ export const useAuthStore = create((set) => ({
         transition: Bounce,
       });
     } finally {
-        set({isSigningUp:false})
+      set({ isSigningUp: false });
+    }
+  },
+
+  signin: async (data) => {
+    set({ isSigningIn: true });
+    try {
+      const res = await axiosInstance.post("/auth/signin", data);
+      set({ authUser: res.data });
+      toast.success("Welcome back! Your account is ready.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    } finally {
+      set({ isSigningIn: false });
+    }
+  },
+
+  signout: async () => {
+    try {
+      await axiosInstance.post("/auth/signout");
+      set({ authUser: null });
+      toast.success("You’re signed out", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
     }
   },
 }));

@@ -19,9 +19,9 @@ const SignUp = () => {
   };
   return (
     <div className="w-full flex items-center justify-center p-4">
-      <div className="relative w-full max-w-4xl md:h-[485px] rounded-xl bg-chat-light">
+      <div className="relative w-full max-w-4xl md:h-[485px] rounded-xl bg-chat-dark">
         <div className="w-full h-full flex flex-col md:flex-row">
-          <div className="h-full md:w-1/2 p-8 flex items-center justify-center md:border-r bg-chat-dark rounded-l-xl">
+          <div className="h-full md:w-1/2 p-8 flex items-center justify-center bg-chat-dark rounded-xl">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -57,7 +57,7 @@ const SignUp = () => {
                       <MailIcon className="auth-input-icon" />
 
                       <input
-                        type="email"
+                        type="text"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
@@ -105,7 +105,7 @@ const SignUp = () => {
               </div>
             </motion.div>
           </div>
-          <div className="h-full hidden md:block md:w-1/2 p-10 items-center justify-center md:border-r rounded-xl bg-chat-light">
+          <div className="h-full hidden md:block md:w-1/2 p-10 items-center justify-center md:border-r rounded-r-xl bg-chat-light">
             <ChatIllustration />
           </div>
         </div>
