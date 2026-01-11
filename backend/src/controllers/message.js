@@ -29,7 +29,7 @@ export const getChatById = async (req, res) => {
 
     res.status(200).json(messages);
   } catch (error) {
-    console.error("Error in getChatById controller..");
+    console.error("Error in getChatById controller..",error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
