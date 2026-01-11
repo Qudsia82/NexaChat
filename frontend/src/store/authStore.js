@@ -8,6 +8,7 @@ export const useAuthStore = create((set) => ({
   isSigningUp: false,
   isSigningIn: false,
   isSigningOut: false,
+  isUpdatingProfile:false,
 
   checkAuth: async () => {
     try {
@@ -114,6 +115,40 @@ export const useAuthStore = create((set) => ({
         theme: "dark",
         transition: Bounce,
       });
+    }
+  },
+
+  updateProfile: async (data) => {
+    set({isUpdatingProfile:true});
+    try {
+      const res = await axiosInstance.put("/auth/update-profile", data);
+      set({ authUser: res.data });
+      toast.success("Profile changes have been saved.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    } catch (error) {
+      console.log("Error in update profile:", error);
+      toast.error(error.response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    } finally {
+      set({isUpdatingProfile:false});
     }
   },
 }));
