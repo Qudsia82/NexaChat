@@ -4,12 +4,14 @@ import EmptyChatState from "./EmptyChatState.jsx";
 import FriendsLoadingState from "./FriendsLoadingState.jsx";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useAuthStore } from "../store/authStore.js";
 
 const Chats = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const { getChatPartners, chats, isUsersLoading, setSelectedUser } =
     useChatStore();
+  const { onlineUsers } = useAuthStore();
   useEffect(() => {
     getChatPartners();
   }, [getChatPartners]);
@@ -20,6 +22,7 @@ const Chats = () => {
     <>
       {chats.map((chat) => (
         <motion.div
+          key={chat._id}
           className="relative group cursor-pointer"
           initial={{
             opacity: 0,
@@ -62,18 +65,19 @@ const Chats = () => {
                   />
                 </motion.div>
 
-                {/* Online indicator with pulse */}
-                <div className="absolute bottom-1 right-1">
-                  <motion.div
-                    className="w-2 h-2 rounded-full"
-                    style={{
-                      backgroundColor: "#6a994e",
-                    }}
-                  />
-                </div>
+                {/* Online indicator */}
+                {onlineUsers.includes(chat._id) && (
+                  <div className="absolute bottom-0 right-1">
+                    <motion.div
+                      className="w-3 h-3 rounded-full"
+                      style={{
+                        backgroundColor: "#6a994e",
+                      }}
+                    />
+                  </div>
+                )}
               </div>
 
-              {/* Chat info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <motion.h4
@@ -99,13 +103,17 @@ const Chats = () => {
                     color: "#9A8C98",
                   }}
                   animate={{
-                    color: isHovered ? "#C9ADA7" : "#9A8C98",
+                    color: onlineUsers.includes(chat._id)
+                      ? "#6a994e"
+                      : isHovered
+                      ? "#C9ADA7"
+                      : "#9A8C98",
                   }}
                   transition={{
                     duration: 0.3,
                   }}
                 >
-                  Online
+                  {onlineUsers.includes(chat._id) ? "Online" : "Offline"}
                 </motion.p>
               </div>
 
