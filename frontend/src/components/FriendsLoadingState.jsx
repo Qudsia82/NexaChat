@@ -1,23 +1,3 @@
-// const FriendsLoadingState = () => {
-//   return (
-//     <div className="space-y-2">
-//       {[1, 2, 3].map((item) => (
-//         <div key={item} className="bg-slate-800/30 p-4 rounded-lg animate-pulse">
-//           <div className="flex items-center space-x-3">
-//             <div className="w-12 h-12 bg-slate-700 rounded-full"></div>
-//             <div className="flex-1">
-//               <div className="h-4 bg-slate-700 rounded w-3/4 mb-2"></div>
-//               <div className="h-3 bg-slate-700/70 rounded w-1/2"></div>
-//             </div>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   )
-// }
-
-// export default FriendsLoadingState
-import React from 'react'
 import { motion } from 'framer-motion'
 const FriendsLoadingState = () => {
   return (
@@ -43,7 +23,6 @@ const FriendsLoadingState = () => {
             ease: 'easeOut',
           }}
         >
-          {/* Shimmer effect overlay */}
           <motion.div
             className="absolute inset-0 -translate-x-full"
             style={{
@@ -64,7 +43,6 @@ const FriendsLoadingState = () => {
           />
 
           <div className="flex items-center space-x-4">
-            {/* Avatar skeleton with breathing animation */}
             <motion.div
               className="relative w-14 h-14 rounded-full"
               style={{
@@ -80,7 +58,6 @@ const FriendsLoadingState = () => {
                 ease: 'easeInOut',
               }}
             >
-              {/* Inner circle for depth */}
               <motion.div
                 className="absolute inset-2 rounded-full"
                 style={{
@@ -99,7 +76,6 @@ const FriendsLoadingState = () => {
               />
             </motion.div>
 
-            {/* Text skeleton with staggered animations */}
             <div className="flex-1 space-y-3">
               <motion.div
                 className="h-4 rounded-full"
@@ -136,7 +112,6 @@ const FriendsLoadingState = () => {
               />
             </div>
 
-            {/* Floating dots indicator */}
             <div className="flex gap-1">
               {[0, 1, 2].map((dot) => (
                 <motion.div

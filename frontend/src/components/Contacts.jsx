@@ -3,10 +3,12 @@ import { useChatStore } from "../store/chatStore.js";
 import FriendsLoadingState from "./FriendsLoadingState.jsx";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useAuthStore } from "../store/authStore.js";
 
 const Contacts = () => {
   const { getAllContacts, allContacts, setSelectedUser, isUserLoading } =
     useChatStore();
+    const {onlineUsers} = useAuthStore();
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -18,6 +20,7 @@ const Contacts = () => {
     <>
       {allContacts.map((contact) => (
         <motion.div
+        key={contact._id}
           className="relative group cursor-pointer"
           initial={{
             opacity: 0,
@@ -54,6 +57,7 @@ const Contacts = () => {
           >
             <div className="flex items-center gap-4 relative z-10">
               {/* Avatar with online indicator */}
+              
               <div className="relative">
                 <motion.div
                   className="relative w-14 h-14 rounded-full overflow-hidden"
@@ -69,14 +73,16 @@ const Contacts = () => {
                 </motion.div>
 
                 {/* Online indicator */}
-                <div className="absolute bottom-1 right-1">
+                {onlineUsers.includes(contact._id) && 
+                                <div className="absolute bottom-0 right-1">
                   <motion.div
-                    className="w-2 h-2 rounded-full"
+                    className="w-3 h-3 rounded-full"
                     style={{
                       backgroundColor: "#6a994e",
                     }}
                   />
-                </div>
+                </div> }
+
               </div>
 
               {/* Chat info */}
