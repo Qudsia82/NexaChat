@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { useChatStore } from '../store/chatStore'
 const EmptyChatState = () => {
   const { setActiveTab } = useChatStore()
-  // Floating bubble positions
   const bubbles = [
     {
       size: 40,
@@ -32,7 +31,7 @@ const EmptyChatState = () => {
   ]
   return (
     <div className="flex flex-col items-center justify-center py-11 px-6 text-center relative overflow-hidden">
-      {/* Ambient background glow */}
+      {/* background glow */}
       <motion.div
         className="absolute inset-0 opacity-30"
         style={{
@@ -49,9 +48,7 @@ const EmptyChatState = () => {
         }}
       />
 
-      {/* Main icon container with floating bubbles */}
       <div className="relative mb-8">
-        {/* Floating message bubbles */}
         {bubbles.map((bubble, index) => (
           <motion.div
             key={index}
@@ -100,7 +97,6 @@ const EmptyChatState = () => {
           </motion.div>
         ))}
 
-        {/* Central icon with glow */}
         <motion.div
           className="relative w-24 h-24 rounded-3xl flex items-center justify-center"
           style={{
@@ -122,7 +118,6 @@ const EmptyChatState = () => {
             delay: 0.2,
           }}
         >
-          {/* Rotating glow ring */}
           <motion.div
             className="absolute inset-0 rounded-3xl"
             style={{
@@ -158,7 +153,6 @@ const EmptyChatState = () => {
             />
           </motion.div>
 
-          {/* Sparkle effects */}
           {[0, 1].map((i) => (
             <motion.div
               key={i}
@@ -193,7 +187,6 @@ const EmptyChatState = () => {
         </motion.div>
       </div>
 
-      {/* Text content with staggered entrance */}
       <motion.div
         className="space-y-3 mb-8"
         initial={{
@@ -227,7 +220,6 @@ const EmptyChatState = () => {
         </p>
       </motion.div>
 
-      {/* Interactive CTA button */}
       <motion.button
         onClick={() => setActiveTab('contacts')}
         className="group relative px-6 py-3 rounded-xl font-medium text-sm overflow-hidden"
@@ -254,7 +246,6 @@ const EmptyChatState = () => {
           scale: 0.95,
         }}
       >
-        {/* Shimmer effect on hover */}
         <motion.div
           className="absolute inset-0 -translate-x-full"
           style={{
@@ -275,7 +266,6 @@ const EmptyChatState = () => {
         </span>
       </motion.button>
 
-      {/* Floating particles in background */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}

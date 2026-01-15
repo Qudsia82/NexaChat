@@ -10,7 +10,7 @@ const ChatPage = () => {
   const { activeTab, selectedUser } = useChatStore();
 
   return (
-    <div className="relative w-full max-w-6xl h-[800px]">
+    <div className="relative w-full max-w-5xl h-[550px] ">
     <div className="w-full h-full flex overflow-hidden rounded-xl">
       <div className="w-80 bg-chat-dark backdrop-blur-sm flex flex-col">
         <AccountHeader />

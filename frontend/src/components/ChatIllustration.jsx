@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 export function ChatIllustration() {
   return (
     <div className="h-full w-full flex items-center justify-center bg-chat-light relative rounded-l-xl">
-      {/* Abstract Background Elements */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.1, scale: 1 }}
@@ -17,9 +16,8 @@ export function ChatIllustration() {
         className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-chat-secondary blur-3xl"
       />
 
-      {/* Main Illustration */}
+      {/*Illustration */}
       <svg viewBox="0 0 600 500" className="w-full max-w-lg drop-shadow-xl z-10">
-        {/* Device Frame */}
         <motion.rect
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -36,9 +34,7 @@ export function ChatIllustration() {
           x="100" y="5" width="400" height="60" rx="24" 
           className="fill-chat-secondary"
         />
-        <rect x="100" y="35" width="400" height="30" fill="#4A4E69" /> {/* Square off bottom corners of header */}
-        
-        {/* Chat Bubbles */}
+        <rect x="100" y="35" width="400" height="30" fill="#4A4E69" />
         
         {/* Left Bubble 1 */}
         <motion.g

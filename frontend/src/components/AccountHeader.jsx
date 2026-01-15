@@ -29,7 +29,7 @@ const AccountHeader = () => {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          {/* AVATAR */}
+          {/* avatar */}
           <div className="relative">
             <button
               disabled={isUpdatingProfile}
@@ -46,7 +46,7 @@ const AccountHeader = () => {
               )}
             </button>
 
-            {/* Camera icon indicator */}
+            {/* camera icon indicator */}
             <div
               className="absolute bottom-0 right-0 size-6 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer"
               onMouseEnter={() => setIsHoveringAvatar(true)}
@@ -65,7 +65,7 @@ const AccountHeader = () => {
               />
             </div>
 
-            {/* Online indicator */}
+            {/* online indicator */}
             <div
               className="absolute top-1 right-0 size-3 rounded-full"
               style={{
@@ -82,7 +82,7 @@ const AccountHeader = () => {
             />
           </div>
 
-          {/* USERNAME & ONLINE TEXT */}
+          {/* username and online text */}
           <div>
             <h3
               className="font-medium text-base max-w-[180px] truncate"
@@ -95,7 +95,7 @@ const AccountHeader = () => {
           </div>
         </div>
 
-        {/* LOGOUT BUTTON */}
+        {/* logout button */}
         <button
           className="p-2.5 rounded-lg transition-all duration-200 group"
           style={{
