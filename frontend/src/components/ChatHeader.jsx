@@ -49,7 +49,7 @@ const ChatHeader = () => {
           </h3>
           <p
             className={`${
-              online ? "text-[#C9ADA7]" : "text-[#C9ADA7]"
+              online ? "text-[#6a994e]" : "text-[#C9ADA7]"
             } text-sm font-medium`}
           >
             {online ? "Online" : "Offline"}
